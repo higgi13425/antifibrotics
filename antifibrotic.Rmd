@@ -28,8 +28,8 @@ dat |>
       y = fct_reorder(Drug, Mechanism), 
       fill = Organ,
       shape = Organ) +
-  geom_point(color = "black", size = 5) +
-  geom_text(aes(y = fct_reorder(Drug, Mechanism), label = Mechanism), x = 1.05, size = 5) +
+  geom_point(color = "black", size = 8) +
+  geom_text(aes(y = fct_reorder(Drug, Mechanism), label = Mechanism), x = 1.05, size = 7) +
   scale_x_discrete(name ="Phase", 
                     limits=c("1","2","3", "Clinical Use")) +
   scale_fill_manual(values = c(
