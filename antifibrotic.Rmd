@@ -24,23 +24,31 @@ Let's plot
 ```{r plot}
 dat |> 
   ggplot() + 
+  geom_segment(aes(x = 0, xend = Phase,
+        y = fct_reorder(Drug, Mechanism), 
+        yend = fct_reorder(Drug, Mechanism),
+        color = Organ), linewidth = 4) +
   aes(x = Phase, 
       y = fct_reorder(Drug, Mechanism), 
       fill = Organ,
       shape = Organ) +
-  geom_point(color = "black", size = 8) +
-  geom_text(aes(y = fct_reorder(Drug, Mechanism), label = Mechanism), x = 1.05, size = 7) +
+  geom_point(color = "black", size = 5) +
+  geom_label(aes(y = fct_reorder(Drug, Mechanism), label = Mechanism), x = 1.05, size = 5, fill = "white") +
   scale_x_discrete(name ="Phase", 
                     limits=c("1","2","3", "Clinical Use")) +
   scale_fill_manual(values = c(
-    "red", "coral3", "cornsilk", "tan")) +
+    "red", "coral3", "lightskyblue1", "tan")) +
+  scale_color_manual(values = c(
+    "red", "coral3", "lightskyblue1", "tan")) +
   scale_shape_manual(values = c(21, 25, 24,22)) +
   theme_bw(base_size = 22) +
   theme(legend.position = c(0.88, 0.8),
-        legend.box.background = element_rect(color= "black")) +
+        legend.box.background = element_rect(color = "black"),
+         panel.background = element_rect(fill = "seashell")) +
+  guides(color = FALSE) +
   labs(y= NULL)
 
 
-ggsave(filename = "antifibrotic.jpg", units = "in", width = 13, height = 8, device = "jpg", dpi = 320)
+ggsave(filename = "antifibrotic.jpg", units = "in", width = 16, height = 7, device = "jpg", dpi = 320)
 ```
 
